@@ -1,0 +1,267 @@
+body {
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.bottomNav {
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  text-align: center;
+  background-color: var(--colorNeutralBackground2);
+}
+
+.bottomNav ul {
+  padding: 4px 0px;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  margin: 0px;
+}
+
+.bottomNav a {
+  display: flex;
+  align-items: center;
+}
+
+.sideNav {
+  background-color: var(--colorNeutralBackground2);
+}
+
+.langSelect {
+  color: black;
+}
+
+.stopPredictionPage,
+.homePage,
+.linePage,
+.settingsPage,
+.aboutPage {
+  margin: 16px 32px 80px 32px;
+  padding: 0px;
+  width: auto;
+}
+
+.aboutPage .linkButton {
+  padding: 0px 8px;
+}
+
+.aboutPage > *,
+.settingsPage > * {
+  padding-bottom: 16px;
+}
+
+.navBar {
+  padding: 16px 16px 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.navBar > a {
+  padding: 0px 32px;
+}
+
+.lineDetails {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.rawResponseDetails {
+  display: flex;
+  gap: 16px;
+}
+
+.appTitle {
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--colorBrandForegroundLink);
+  width: max-content;
+  display: block;
+}
+
+.etaCardHeader,
+.routeCard {
+  color: var(--colorBrandForegroundLink);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+main {
+  padding: 0px 16px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.stopsListContainer ul,
+.etaCardContainer ul,
+.bottomNav ul,
+.sideNav ul,
+.linePage ul {
+  padding-left: 0px;
+  list-style-type: none;
+}
+
+.routeList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin: 32px 0;
+}
+
+*[role="checkbox"] {
+  display: none;
+}
+
+.searchBlock {
+  justify-content: space-between;
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.stopsListContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.countdown {
+  padding: 0px 4px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.badge.arriving {
+  align-self: center;
+}
+
+.etaCardContainer ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.etaCardContainer {
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.bottomNav a,
+.sideNav a,
+.settingsPage a,
+.routerLink,
+.etaCardContainer a {
+  text-decoration: none;
+}
+
+.etaCardCountdown > * {
+  flex-wrap: wrap;
+  float: right;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+.routeCard {
+  display: flex;
+  align-items: center;
+}
+
+.itemInfoPlaceholder {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.etaCardBranchTagAndDestination {
+  display: flex;
+}
+
+.etaCardDestinationInfo {
+  margin-top: auto;
+  margin-bottom: auto;
+  display: grid;
+  gap: 12px;
+}
+
+.etaCard {
+  position: relative;
+}
+
+.etaBadgeContainer {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.etaCardList li {
+  display: flex;
+  flex-direction: column;
+  min-height: 136px;
+}
+
+.etaCardList li > * {
+  flex: 1;
+}
+
+.TitleLink {
+  color: var(--colorBrandForegroundLink);
+}
+
+@media screen and (min-width: 800px) {
+  .stopPredictionPage,
+  .linePage,
+  .homePage {
+    width: 100%;
+  }
+
+  .container {
+    flex-direction: row;
+  }
+
+  .navBar {
+    width: -moz-fit-content;
+    width: fit-content;
+    background-color: var(--colorNeutralBackground2);
+  }
+
+  .sideNav button {
+    padding-left: 32px;
+    justify-content: left;
+  }
+
+  .etaCardCountdown {
+    min-width: 80px;
+  }
+
+  .etaCardCountdown > * {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 800px) {
+  .etaCardContainer ul {
+    grid-template-columns: auto;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .searchBlock button {
+    width: 100%;
+  }
+}

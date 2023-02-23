@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "label": {
+      "home": "Home",
+      "lines": "Lines",
+      "about": "About",
+      "lang": "Language",
+      "settings": "Settings"
+    }
+  },
+  "home": {
+    "title": {
+      "name": "TTC arrivals",
+      "tooltip": "Return home"
+    },
+    "etaReminder": "You'll see saved lists here, in the FUTURE. <br/> Try clicking the bookmark icons on a stop you frequently visit.",
+    "homeNoEta": "All your bookmarked stops have no ETA."
+  },
+  "lines": {
+    "ariaLabel": "enter a line number",
+    "placeholder": "enter a line number",
+    "browserTitle": "Line {{lineNum}} | TTC arrivals",
+    "title": "Enter a line number:",
+    "number": "Line {{lineNum}}",
+    "lineAndStopInfo": "Line {{lineNum}} Stop {{stopNum}} =",
+    "noLineInDb": "Error: This line is not in the route database.<br />Subway lines are unsupported for now."
+  },
+  "buttons": {
+    "search": "Search",
+    "mapPin": "View location in Google Maps",
+    "busIcon": "View stop ETA",
+    "languageChange": "language selection"
+  },
+  "error": {
+    "notFound": "404: this page does not exist :("
+  },
+  "debug": {
+    "showResponse": "View raw response"
+  },
+  "eta": {
+    "minuteShort": "m",
+    "secondShort": "s"
+  },
+  "badge": {
+    "arriving": "Arriving"
+  },
+  "lang": {
+    "en": "English",
+    "fr": "Français (Traduit par ChatGpt)",
+    "zh": "中文"
+  }
+}

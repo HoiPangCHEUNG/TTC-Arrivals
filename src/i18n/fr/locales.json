@@ -1,0 +1,53 @@
+{
+  "nav": {
+    "label": {
+      "home": "Accueil",
+      "lines": "Lignes",
+      "about": "À propos",
+      "lang": "Langue",
+      "settings": "Paramètres"
+    }
+  },
+  "home": {
+    "title": {
+      "name": "Arrivées TTC",
+      "tooltip": "Retourner à l'accueil"
+    },
+    "headline": "Vous verrez ici des listes sauvegardées, à l'avenir. <br />",
+    "etaReminder": "Essayez de cliquer sur les icônes de signet sur un arrêt que vous fréquentez fréquemment.",
+    "homeNoEta": "Tous les arrêts que vous avez ajoutés en signet n'ont pas d'ETA."
+  },
+  "lines": {
+    "ariaLabel": "entrer un numéro de ligne",
+    "placeholder": "entrer un numéro de ligne",
+    "browserTitle": "Ligne {{lineNum}} | Arrivées TTC",
+    "title": "Entrez un numéro de ligne :",
+    "number": "Ligne {{lineNum}}",
+    "lineAndStopInfo": "Ligne {{lineNum}} Arrêt {{stopNum}} =",
+    "noLineInDb": "Erreur : Cette ligne n'est pas dans la base de données des itinéraires. <br />Les lignes de métro ne sont pas prises en charge pour le moment."
+  },
+  "buttons": {
+    "search": "Rechercher",
+    "mapPin": "Voir l'emplacement dans Google Maps",
+    "busIcon": "Voir l'ETA de l'arrêt",
+    "languageChange": "sélection de la langue"
+  },
+  "error": {
+    "notFound": "404 : cette page n'existe pas :("
+  },
+  "debug": {
+    "showResponse": "Voir la réponse brute"
+  },
+  "eta": {
+    "minuteShort": "m",
+    "secondShort": "s"
+  },
+  "badge": {
+    "arriving": "Arrivée"
+  },
+  "lang": {
+    "en": "English",
+    "fr": "Français (Traduit par ChatGpt)",
+    "zh": "中文"
+  }
+}
