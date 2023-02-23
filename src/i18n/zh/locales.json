@@ -26,6 +26,9 @@
     "lineAndStopInfo": "{{lineNum}} 線 #{{stopNum}} 站 =",
     "noLineInDb": "資料庫裏面冇呢條線嘅資料。<br />(暫時睇唔到地鐵路線)"
   },
+  "stops": {
+    "browserTitle": "{{stopId}} 站 | TTC 到站時間"
+  },
   "buttons": {
     "search": "搜尋",
     "mapPin": "響 Google 地圖睇佢個位置",

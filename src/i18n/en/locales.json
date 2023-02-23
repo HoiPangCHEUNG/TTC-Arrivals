@@ -10,7 +10,7 @@
   },
   "home": {
     "title": {
-      "name": "TTC arrivals",
+      "name": "TTC Arrivals",
       "tooltip": "Return home"
     },
     "etaReminder": "You'll see saved lists here, in the FUTURE. <br/> Try clicking the bookmark icons on a stop you frequently visit.",
@@ -19,11 +19,14 @@
   "lines": {
     "ariaLabel": "enter a line number",
     "placeholder": "enter a line number",
-    "browserTitle": "Line {{lineNum}} | TTC arrivals",
+    "browserTitle": "Line {{lineNum}} | TTC Arrivals",
     "title": "Enter a line number:",
     "number": "Line {{lineNum}}",
     "lineAndStopInfo": "Line {{lineNum}} Stop {{stopNum}} =",
     "noLineInDb": "Error: This line is not in the route database.<br />Subway lines are unsupported for now."
+  },
+  "stops": {
+    "browserTitle": "Stop ID {{stopId}} | TTC Arrivals"
   },
   "buttons": {
     "search": "Search",

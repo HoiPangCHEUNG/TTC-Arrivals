@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -10,9 +11,10 @@ export default function StopPrediction() {
   const [dataUrl, setDataUrl] = useState("");
 
   useEffect(() => {
-    document.title = `Stop ID ${stopId} | TTC arrivals`;
+    document.title = t("stops.browserTitle", { stopId });
     setDataUrl(stopsDataEndpoint.concat(stopId));
   });
+
   return (
     <main className="stopPredictionPage">
       <EtaCardContainer dataUrl={dataUrl} shdShowTitle stopId={stopId} />
