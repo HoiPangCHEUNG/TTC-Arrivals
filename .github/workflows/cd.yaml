@@ -4,11 +4,11 @@ on:
     branches:
       - master
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build and Deploy
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           branch: gh-pages
