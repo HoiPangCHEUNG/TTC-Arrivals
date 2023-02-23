@@ -4,11 +4,10 @@ on:
     branches:
       - master
 
-needs: CI
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    needs: CI
     steps:
       - uses: actions/checkout@v3.3.0
       - name: Deploy
