@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+
+needs: CI
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
