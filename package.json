@@ -2,7 +2,7 @@
   "homepage": "https://hoipangcheung.github.io/TTC-Arrivals",
   "name": "TTC-Arrivals",
   "version": "0.1.1",
-  "private": false,
+  "private": true,
   "dependencies": {
     "@fluentui/react-components": "^9.9.1",
     "@fluentui/react-icons": "^2.0.191",
