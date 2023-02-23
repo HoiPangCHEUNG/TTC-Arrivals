@@ -20,6 +20,7 @@ import { extractStopDataFromXml } from "../utils/xmlParser";
 function RouteInfo(props: { line: number }): JSX.Element {
   const [data, setData] = useState<RouteXml>();
   const [lineNum] = useState(props.line);
+  const [isLoading, setIsLoading] = useState(true);
   const [stopDb, setStopDb] = useState<LineStop[]>([]);
   const fluentStyle = fluentStyles();
 
@@ -82,6 +83,7 @@ function RouteInfo(props: { line: number }): JSX.Element {
 
       setData(parsedData);
       setStopDb(extractStopDataFromXml(parsedData));
+      setIsLoading(false);
     });
 
     return () => {
@@ -111,11 +113,11 @@ function RouteInfo(props: { line: number }): JSX.Element {
       return <ul>{accordionList}</ul>;
     }
 
-    return (
+    return !isLoading ? (
       <Text as="h1" weight="semibold">
         <Trans>{t("lines.noLineInDb")}</Trans>
       </Text>
-    );
+    ) : null;
   }, [data]);
 
   return (
