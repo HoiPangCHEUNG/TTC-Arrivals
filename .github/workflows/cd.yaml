@@ -17,13 +17,9 @@ jobs:
         run: npm install
 
       # Please use a bot account/company account for commercial/industrial projects.
-      - name: Set Git user
-        run: |
-          git config --global user.email "hoipang1e06@gmail.com"
-          git config --global user.name "HoiPangCheung"
 
       - name: Deploy to GitHub Pages
-        run: npm run deploy
+        run: npm run build && gh-pages -d build -t true -b master -r git@github.com:HoiPangCHEUNG/TTC-Arrivals.git
         env:
           CI: true
 
