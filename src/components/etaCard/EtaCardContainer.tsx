@@ -18,6 +18,7 @@ import { EtaCard } from "./EtaCard";
 
 export default function EtaCardContainer(props: EtaContainerParams) {
   const [rawEta, setRawEta] = useState<EtaPredictionXml>();
+  const [isLoading, setIsLoading] = useState(true);
   const [processedEtaList, setProcessedEtaList] = useState<BranchEta[]>([]);
   const [etaCards, setEtaCards] = useState<JSX.Element[]>();
   const favouriteEtas: FavouriteEtaRedux = useAppSelector(
@@ -47,6 +48,7 @@ export default function EtaCardContainer(props: EtaContainerParams) {
 
         setRawEta(parsedData);
         setProcessedEtaList(extractEtaDataFromXml(parsedData));
+        setIsLoading(false);
       });
     }
 
@@ -85,7 +87,7 @@ export default function EtaCardContainer(props: EtaContainerParams) {
 
   const EtaCards = useCallback(() => {
     switch (true) {
-      case processedEtaList.length === 0:
+      case processedEtaList.length === 0 && !isLoading:
         return (
           <section className="itemInfoPlaceholder">
             <Text>
@@ -93,8 +95,8 @@ export default function EtaCardContainer(props: EtaContainerParams) {
             </Text>
           </section>
         );
-      case etaCards === undefined:
-      case etaCards && etaCards.length === 0:
+      case etaCards === undefined && !isLoading:
+      case etaCards && etaCards.length === 0 && !isLoading:
         return (
           <section className="itemInfoPlaceholder">
             <Text>{t("home.homeNoEta")}</Text>
