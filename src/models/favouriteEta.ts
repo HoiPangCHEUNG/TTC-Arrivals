@@ -25,4 +25,5 @@ export interface EtaContainerParams {
   shdShowTitle?: boolean;
   shdFilterNonFavourite?: boolean;
   stopId?: string;
+  isLoaded?: boolean;
 }
