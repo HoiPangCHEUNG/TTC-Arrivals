@@ -1,27 +1,18 @@
 name: CD
-
 on:
   push:
     branches:
       - master
 
+needs: CI
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install
-
-      # Please use a bot account/company account for commercial/industrial projects.
-
-      - name: Deploy to GitHub Pages
-        run: npm run build && gh-pages -d build -t true -b master -r git@github.com:HoiPangCHEUNG/TTC-Arrivals.git
-        env:
-          CI: true
-
-      - name: Cleanup
-        run: rm -rf node_modules build
+      - uses: actions/checkout@v2
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          branch: gh-pages
+          folder: build
