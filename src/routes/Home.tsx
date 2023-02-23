@@ -12,6 +12,7 @@ import useNavigate from "./navigate";
 export default function Home() {
   const [input, setInput] = useState("");
   const [dataUrl, setDataUrl] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
   const { t } = useTranslation();
   const { navigate } = useNavigate();
   const fluentStyle = fluentStyles();
@@ -28,9 +29,13 @@ export default function Home() {
       );
     });
 
-    if (urlParams === "") return;
+    if (urlParams === "") {
+      setIsLoaded(true);
+      return;
+    }
 
     setDataUrl(multiRouteDataEndpoint.concat(urlParams));
+    setIsLoaded(true);
   }, [favouriteEtas.ids]);
 
   const handleLineChange = useCallback(
@@ -60,7 +65,11 @@ export default function Home() {
           {t("buttons.search")}
         </Button>
       </form>
-      <EtaCardContainer dataUrl={dataUrl} shdFilterNonFavourite />
+      <EtaCardContainer
+        dataUrl={dataUrl}
+        shdFilterNonFavourite
+        isLoaded={isLoaded}
+      />
     </main>
   );
 }

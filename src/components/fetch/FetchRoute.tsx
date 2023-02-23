@@ -1,8 +1,7 @@
-import { Badge, Button, Text } from "@fluentui/react-components";
+import { Badge, Button } from "@fluentui/react-components";
 import { Map24Filled, VehicleBus16Filled } from "@fluentui/react-icons";
 import { t } from "i18next";
 import { useCallback, useEffect, useState } from "react";
-import { Trans } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import {
@@ -11,6 +10,7 @@ import {
 } from "../../constants/dataEndpoints";
 import { RouteXml } from "../../models/etaXml";
 import { LineStop } from "../../models/lineStop";
+import useNavigate from "../../routes/navigate";
 import { fluentStyles } from "../../styles/fluent";
 import { StopAccordions } from "../accordions/StopAccordions";
 import RawDisplay from "../rawDisplay/RawDisplay";
@@ -20,7 +20,8 @@ import { extractStopDataFromXml } from "../utils/xmlParser";
 function RouteInfo(props: { line: number }): JSX.Element {
   const [data, setData] = useState<RouteXml>();
   const [lineNum] = useState(props.line);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const { navigate } = useNavigate();
   const [stopDb, setStopDb] = useState<LineStop[]>([]);
   const fluentStyle = fluentStyles();
 
@@ -83,13 +84,19 @@ function RouteInfo(props: { line: number }): JSX.Element {
 
       setData(parsedData);
       setStopDb(extractStopDataFromXml(parsedData));
-      setIsLoading(false);
+      setIsLoaded(true);
     });
 
     return () => {
       controller.abort();
     };
   }, []);
+
+  useEffect(() => {
+    if (isLoaded && (data === undefined || data?.body.Error !== undefined)) {
+      navigate("/404");
+    }
+  });
 
   const Route = useCallback(() => {
     if (data !== undefined && data.body.Error === undefined) {
@@ -113,11 +120,7 @@ function RouteInfo(props: { line: number }): JSX.Element {
       return <ul>{accordionList}</ul>;
     }
 
-    return !isLoading ? (
-      <Text as="h1" weight="semibold">
-        <Trans>{t("lines.noLineInDb")}</Trans>
-      </Text>
-    ) : null;
+    return null;
   }, [data]);
 
   return (

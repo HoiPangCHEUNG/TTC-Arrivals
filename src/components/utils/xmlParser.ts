@@ -27,6 +27,8 @@ export function extractStopDataFromXml(json: RouteXml): LineStop[] {
 }
 
 export const extractEtaDataFromXml = (json: EtaPredictionXml): BranchEta[] => {
+  if (json.body.Error) return [];
+
   const predictions = Array.isArray(json.body.predictions)
     ? json.body.predictions
     : [json.body.predictions];

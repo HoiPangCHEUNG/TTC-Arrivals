@@ -10,6 +10,7 @@ import {
   EtaContainerParams,
   FavouriteEtaRedux,
 } from "../../models/favouriteEta";
+import useNavigate from "../../routes/navigate";
 import { useAppSelector } from "../../store";
 import RawDisplay from "../rawDisplay/RawDisplay";
 import { FetchXMLWithCancelToken } from "../utils/fetch";
@@ -18,9 +19,10 @@ import { EtaCard } from "./EtaCard";
 
 export default function EtaCardContainer(props: EtaContainerParams) {
   const [rawEta, setRawEta] = useState<EtaPredictionXml>();
-  const [isLoading, setIsLoading] = useState(true);
   const [processedEtaList, setProcessedEtaList] = useState<BranchEta[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [etaCards, setEtaCards] = useState<JSX.Element[]>();
+  const { navigate } = useNavigate();
   const favouriteEtas: FavouriteEtaRedux = useAppSelector(
     (state) => state.favouriteEtas
   );
@@ -43,19 +45,26 @@ export default function EtaCardContainer(props: EtaContainerParams) {
     if (props.dataUrl.length > 0) {
       fetchEtaData().then(({ parsedData, error }) => {
         if (error || !parsedData) {
+          setIsLoaded(true);
           return;
+        }
+
+        if (parsedData.body.Error) {
+          navigate("/404");
         }
 
         setRawEta(parsedData);
         setProcessedEtaList(extractEtaDataFromXml(parsedData));
-        setIsLoading(false);
+        setIsLoaded(true);
       });
+    } else if (props.isLoaded) {
+      setIsLoaded(true);
     }
 
     return () => {
       controller.abort();
     };
-  }, [props.dataUrl]);
+  }, [props.dataUrl, props.isLoaded]);
 
   useEffect(() => {
     const result = processedEtaList.flatMap((eta) => {
@@ -87,7 +96,9 @@ export default function EtaCardContainer(props: EtaContainerParams) {
 
   const EtaCards = useCallback(() => {
     switch (true) {
-      case processedEtaList.length === 0 && !isLoading:
+      case !isLoaded:
+        return null;
+      case processedEtaList.length === 0:
         return (
           <section className="itemInfoPlaceholder">
             <Text>
@@ -95,8 +106,8 @@ export default function EtaCardContainer(props: EtaContainerParams) {
             </Text>
           </section>
         );
-      case etaCards === undefined && !isLoading:
-      case etaCards && etaCards.length === 0 && !isLoading:
+      case etaCards === undefined:
+      case etaCards && etaCards.length === 0:
         return (
           <section className="itemInfoPlaceholder">
             <Text>{t("home.homeNoEta")}</Text>
@@ -111,7 +122,7 @@ export default function EtaCardContainer(props: EtaContainerParams) {
       default:
         return null;
     }
-  }, [etaCards]);
+  }, [etaCards, isLoaded]);
 
   return (
     <div className="etaCardContainer">
