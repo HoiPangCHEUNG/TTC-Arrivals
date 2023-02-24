@@ -21,11 +21,22 @@ export default function EtaCardContainer(props: EtaContainerParams) {
   const [rawEta, setRawEta] = useState<EtaPredictionXml>();
   const [processedEtaList, setProcessedEtaList] = useState<BranchEta[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [toggleFetch, setToggleFetch] = useState(false);
   const [etaCards, setEtaCards] = useState<JSX.Element[]>();
   const { navigate } = useNavigate();
   const favouriteEtas: FavouriteEtaRedux = useAppSelector(
     (state) => state.favouriteEtas
   );
+
+  // called every minute to fetch latest data
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setToggleFetch((prevToggleFetch) => !prevToggleFetch);
+    }, 60000);
+
+    // Return a function that will clear the interval on unmount
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -64,7 +75,7 @@ export default function EtaCardContainer(props: EtaContainerParams) {
     return () => {
       controller.abort();
     };
-  }, [props.dataUrl, props.isLoaded]);
+  }, [props.dataUrl, props.isLoaded, toggleFetch]);
 
   useEffect(() => {
     const result = processedEtaList.flatMap((eta) => {
