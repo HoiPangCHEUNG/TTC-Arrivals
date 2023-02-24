@@ -13,9 +13,8 @@
       "name": "Arrivées TTC",
       "tooltip": "Retourner à l'accueil"
     },
-    "headline": "Vous verrez ici des listes sauvegardées, à l'avenir. <br />",
-    "etaReminder": "Essayez de cliquer sur les icônes de signet sur un arrêt que vous fréquentez fréquemment.",
-    "homeNoEta": "Tous les arrêts que vous avez ajoutés en signet n'ont pas d'ETA."
+    "etaReminder": "Pour voir vos arrêts fréquemment visités, cliquez sur les icônes de signets lorsque vous êtes sur leurs pages. Vos arrêts sauvegardés apparaîtront ici pour un accès facile !",
+    "noEtaAvailable": "Oops, désolé, aucune donnée d'heure d'arrivée estimée (ETA) n'est disponible pour le moment. Veuillez vérifier à nouveau plus tard."
   },
   "lines": {
     "ariaLabel": "entrer un numéro de ligne",
@@ -23,8 +22,7 @@
     "browserTitle": "Ligne {{lineNum}} | Arrivées TTC",
     "title": "Entrez un numéro de ligne :",
     "number": "Ligne {{lineNum}}",
-    "lineAndStopInfo": "Ligne {{lineNum}} Arrêt {{stopNum}} =",
-    "noLineInDb": "Erreur : Cette ligne n'est pas dans la base de données des itinéraires. <br />Les lignes de métro ne sont pas prises en charge pour le moment."
+    "lineAndStopInfo": "Ligne {{lineNum}} Arrêt {{stopNum}} ="
   },
   "stops": {
     "browserTitle": "Identifiant d'arrêt {{stopId}} | Arrivées TTC"
@@ -36,7 +34,7 @@
     "languageChange": "sélection de la langue"
   },
   "error": {
-    "notFound": "404 : cette page n'existe pas :("
+    "notFound": "Not Found 404: Je ne peux rien voir, Capitaine =[ "
   },
   "debug": {
     "showResponse": "Voir la réponse brute"

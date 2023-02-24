@@ -55,13 +55,9 @@ export default function EtaCardContainer(props: EtaContainerParams) {
 
     if (props.dataUrl.length > 0) {
       fetchEtaData().then(({ parsedData, error }) => {
-        if (error || !parsedData) {
-          setIsLoaded(true);
-          return;
-        }
-
-        if (parsedData.body.Error) {
+        if (error || !parsedData || parsedData.body.Error) {
           navigate("/404");
+          return;
         }
 
         setRawEta(parsedData);
@@ -121,7 +117,7 @@ export default function EtaCardContainer(props: EtaContainerParams) {
       case etaCards && etaCards.length === 0:
         return (
           <section className="itemInfoPlaceholder">
-            <Text>{t("home.homeNoEta")}</Text>
+            <Text>{t("home.noEtaAvailable")}</Text>
           </section>
         );
       case etaCards && etaCards.length > 0:

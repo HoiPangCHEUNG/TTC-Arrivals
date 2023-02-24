@@ -13,8 +13,8 @@
       "name": "TTC Arrivals",
       "tooltip": "Return home"
     },
-    "etaReminder": "You'll see saved lists here, in the FUTURE. <br/> Try clicking the bookmark icons on a stop you frequently visit.",
-    "homeNoEta": "All your bookmarked stops have no ETA."
+    "etaReminder": "To see your frequently visited stops, click the bookmark icons when you're on their pages. Your saved stops will appear here for easy access!",
+    "noEtaAvailable": "Oops, sorry, no Estimated Time of Arrival (ETA) data is available right now. Please check back later."
   },
   "lines": {
     "ariaLabel": "enter a line number",
@@ -22,8 +22,7 @@
     "browserTitle": "Line {{lineNum}} | TTC Arrivals",
     "title": "Enter a line number:",
     "number": "Line {{lineNum}}",
-    "lineAndStopInfo": "Line {{lineNum}} Stop {{stopNum}} =",
-    "noLineInDb": "Error: This line is not in the route database.<br />Subway lines are unsupported for now."
+    "lineAndStopInfo": "Line {{lineNum}} Stop {{stopNum}} ="
   },
   "stops": {
     "browserTitle": "Stop ID {{stopId}} | TTC Arrivals"
@@ -35,7 +34,7 @@
     "languageChange": "language selection"
   },
   "error": {
-    "notFound": "404: this page does not exist :("
+    "notFound": "Not Found 404: Cant see a thing Captain =[ "
   },
   "debug": {
     "showResponse": "View raw response"
