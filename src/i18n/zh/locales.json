@@ -13,9 +13,8 @@
       "name": "TTC 到站時間",
       "tooltip": "回主頁"
     },
-    "headline": "加落書籤嘅站會出現響呢度。 <br />",
-    "etaReminder": "(試下響你成日等車嘅站撳個書籤 icon)",
-    "homeNoEta": "你所有書籤裏面嘅站都冇下班車嘅資料。"
+    "etaReminder": "溫提下你： 請善用bookmark功能，咁就唔洗成日左搵右搵啦",
+    "noEtaAvailable": "是咁的，已經無下一班車既資料了... 飲杯咖啡先再check check 啦"
   },
   "lines": {
     "ariaLabel": "輸入路線",
@@ -23,8 +22,7 @@
     "browserTitle": "{{lineNum}} 線 | TTC 到站時間",
     "title": "輸入路線:",
     "number": "{{lineNum}} 號線",
-    "lineAndStopInfo": "{{lineNum}} 線 #{{stopNum}} 站 =",
-    "noLineInDb": "資料庫裏面冇呢條線嘅資料。<br />(暫時睇唔到地鐵路線)"
+    "lineAndStopInfo": "{{lineNum}} 線 #{{stopNum}} 站 ="
   },
   "stops": {
     "browserTitle": "{{stopId}} 站 | TTC 到站時間"
@@ -36,7 +34,7 @@
     "languageChange": "選擇語言"
   },
   "error": {
-    "notFound": "404: 我地冇呢一頁 😿"
+    "notFound": "Not Found 404: 隊長！我看不到...這一頁😿"
   },
   "debug": {
     "showResponse": "原始資料"
@@ -46,7 +44,7 @@
     "secondShort": "秒"
   },
   "badge": {
-    "arriving": "就到"
+    "arriving": "Arriving"
   },
   "lang": {
     "en": "English",
