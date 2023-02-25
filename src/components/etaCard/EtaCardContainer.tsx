@@ -2,7 +2,6 @@ import { Text, Title1 } from "@fluentui/react-components";
 import { t } from "i18next";
 import { useCallback, useEffect, useState } from "react";
 import { Trans } from "react-i18next";
-import { Link } from "react-router-dom";
 
 import {
   BranchEta,
@@ -91,9 +90,7 @@ export default function EtaCardContainer(props: EtaContainerParams) {
 
   const Title = useCallback(() => {
     return processedEtaList[0] !== undefined && props.shdShowTitle ? (
-      <Link to={`/lines/${processedEtaList[0].routeTag}`}>
-        <Title1 className="TitleLink">{processedEtaList[0].stopTitle}</Title1>
-      </Link>
+      <Title1>{processedEtaList[0].stopTitle}</Title1>
     ) : null;
   }, [processedEtaList]);
 
