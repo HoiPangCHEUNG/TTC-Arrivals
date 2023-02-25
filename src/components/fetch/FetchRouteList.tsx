@@ -4,14 +4,11 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { routeListEndpoint } from "../../constants/dataEndpoints";
-import { RoutesXml } from "../../models/etaXml";
 import { fluentStyles } from "../../styles/fluent";
-import RawDisplay from "../rawDisplay/RawDisplay";
 import { FetchXMLWithCancelToken } from "../utils/fetch";
 import { parseRouteTitle } from "../utils/routeName";
 
 export function RoutesInfo() {
-  const [routeXmlData, setRouteXmlData] = useState<RoutesXml>();
   const [routesDb, setRoutesDb] = useState<{ tag: number; title: string }[]>(
     []
   );
@@ -37,7 +34,6 @@ export function RoutesInfo() {
         return;
       }
 
-      setRouteXmlData(parsedData);
       if (parsedData.body.route.length > 0) {
         setRoutesDb(parsedData.body.route);
       }
@@ -69,7 +65,6 @@ export function RoutesInfo() {
   return (
     <div>
       <RouteCards />
-      <RawDisplay data={routeXmlData} />
     </div>
   );
 }

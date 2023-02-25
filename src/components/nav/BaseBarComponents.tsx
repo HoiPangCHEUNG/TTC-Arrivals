@@ -7,15 +7,15 @@ import {
   Settings20Regular,
   Settings24Filled,
 } from "@fluentui/react-icons";
+import { t } from "i18next";
 import { useCallback, useMemo } from "react";
-import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
 import { NavItem } from "../../models/nav";
 import { fluentStyles } from "../../styles/fluent";
+import { SettingsDialog } from "../settings/SettingsDialog";
 
 export function BaseBarComponents({ width }: { width: number }) {
-  const { t } = useTranslation();
   const fluentStyle = fluentStyles();
 
   const navItems: NavItem[] = useMemo(() => {
@@ -34,7 +34,6 @@ export function BaseBarComponents({ width }: { width: number }) {
       },
       {
         label: "nav.label.settings",
-        path: `/settings`,
         icon: <Settings20Regular />,
         iconActive: <Settings24Filled />,
       },
@@ -58,7 +57,7 @@ export function BaseBarComponents({ width }: { width: number }) {
 
   const BaseBarComponents = useCallback(() => {
     const baseBarComponents = navItems.map((item) => {
-      return (
+      return item.path ? (
         <li key={t(item.label)}>
           <NavLink
             className={fluentStyle.navButtonLink}
@@ -78,6 +77,10 @@ export function BaseBarComponents({ width }: { width: number }) {
               </Button>
             )}
           </NavLink>
+        </li>
+      ) : (
+        <li key={t(item.label)}>
+          <SettingsDialog width={width} item={item} />
         </li>
       );
     });

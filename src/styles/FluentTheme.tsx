@@ -1,31 +1,33 @@
 import {
   FluentProvider,
-  webDarkTheme,
-  webLightTheme,
+  teamsDarkTheme,
+  teamsLightTheme,
 } from "@fluentui/react-components";
-import { useState } from "react";
+import { useCallback } from "react";
 
+import { SettingOptions, settingsRedux } from "../models/settings";
+import { store, useAppSelector } from "../store";
+import { settingsSelectors } from "../store/settings/slice";
 import { fluentStyles } from "./fluent";
 
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
 export function FluentTheme({ children }: { children: JSX.Element }) {
-  const [isDark, setIsDark] = useState(prefersDark);
   const fluentStyle = fluentStyles();
+  const settings: settingsRedux = useAppSelector((state) => state.settings);
 
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-  };
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", () => {
-      toggleTheme();
-    });
+  const isDarkMode = useCallback(() => {
+    console.log();
+    return (
+      settingsSelectors.selectById(
+        store.getState().settings,
+        SettingOptions.darkMode
+      )?.value ?? false
+    );
+  }, settings.ids);
 
   return (
     <FluentProvider
       className={fluentStyle.fluentProvider}
-      theme={isDark ? webDarkTheme : webLightTheme}
+      theme={isDarkMode() ? teamsDarkTheme : teamsLightTheme}
     >
       {children}
     </FluentProvider>

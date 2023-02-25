@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 
 import App from "../App";
-import { Settings } from "../components/settings/Settings";
 import Error from "./Error";
 import Home from "./Home";
 import Line from "./Line";
@@ -27,7 +26,6 @@ export const router = createBrowserRouter(
       <Route path="stops" element={<Outlet />}>
         <Route path=":stopId" element={<StopPrediction />} />
       </Route>
-      <Route path="settings" element={<Settings />} />
       <Route path="*" element={<Error />} />
       <Route index element={<Home />} />
     </Route>

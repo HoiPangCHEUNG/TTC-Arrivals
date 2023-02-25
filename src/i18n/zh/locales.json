@@ -31,7 +31,9 @@
     "search": "搜尋",
     "mapPin": "響 Google 地圖睇佢個位置",
     "busIcon": "睇巴士幾時到站",
-    "languageChange": "選擇語言"
+    "languageChange": "選擇語言",
+    "appearance": "外觀",
+    "darkMode": "黑夜模式"
   },
   "error": {
     "notFound": "Not Found 404: 隊長！我看不到...這一頁😿"
@@ -48,7 +50,7 @@
   },
   "lang": {
     "en": "English",
-    "fr": "Français (Traduit par ChatGpt)",
+    "fr": "Français (par ChatGpt)",
     "zh": "中文"
   }
 }

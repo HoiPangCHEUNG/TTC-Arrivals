@@ -17,6 +17,7 @@ export const saveSettingsState = (state: {
 }) => {
   try {
     const serialState = JSON.stringify(state);
+    // localStorage.removeItem("appSettings");
     localStorage.setItem("appSettings", serialState);
     localStorage.setItem("version", "1");
   } catch (err) {

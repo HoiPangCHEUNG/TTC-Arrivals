@@ -1,9 +1,12 @@
+html,
 body {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
 }
 
 #root {
   height: 100%;
+  flex: 1;
 }
 
 .App {
@@ -35,10 +38,6 @@ body {
 .bottomNav a {
   display: flex;
   align-items: center;
-}
-
-.sideNav {
-  background-color: var(--colorNeutralBackground2);
 }
 
 .langSelect {
@@ -223,6 +222,14 @@ pre {
   color: var(--colorBrandForegroundLink);
 }
 
+.DialogDismissButton {
+  top: -16px;
+  right: -16px;
+  position: absolute;
+  height: 32px;
+  width: 32px;
+}
+
 @media screen and (min-width: 800px) {
   .stopPredictionPage,
   .linePage,
@@ -237,7 +244,11 @@ pre {
   .navBar {
     width: -moz-fit-content;
     width: fit-content;
-    background-color: var(--colorNeutralBackground2);
+    background-color: var(--colorNeutralBackground3);
+  }
+
+  .sideNav {
+    background-color: var(--colorNeutralBackground3);
   }
 
   .sideNav button {

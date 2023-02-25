@@ -13,7 +13,6 @@ import { LineStop } from "../../models/lineStop";
 import useNavigate from "../../routes/navigate";
 import { fluentStyles } from "../../styles/fluent";
 import { StopAccordions } from "../accordions/StopAccordions";
-import RawDisplay from "../rawDisplay/RawDisplay";
 import { FetchXMLWithCancelToken } from "../utils/fetch";
 import { extractStopDataFromXml } from "../utils/xmlParser";
 
@@ -126,7 +125,6 @@ function RouteInfo(props: { line: number }): JSX.Element {
   return (
     <div className="stopsListContainer">
       <Route />
-      <RawDisplay data={data} />
     </div>
   );
 }

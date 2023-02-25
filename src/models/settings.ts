@@ -1,10 +1,16 @@
 export interface settingsItem {
-  id: string;
-  name: string;
-  value: string;
+  id: number;
+  value: boolean;
 }
 
 export interface settingsRedux {
   ids: string[];
   entities: settingsItem[];
 }
+
+/* eslint-disable */
+export enum SettingOptions {
+  devMode,
+  darkMode,
+}
+/* eslint-disable */
