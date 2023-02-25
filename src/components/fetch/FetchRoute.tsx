@@ -25,8 +25,8 @@ function RouteInfo(props: { line: number }): JSX.Element {
   const fluentStyle = fluentStyles();
 
   const createStopList = useCallback(
-    (stuff: { stop: { tag: string }[] }) => {
-      return stuff.stop.flatMap((element) => {
+    (stop: { tag: string }[]) => {
+      return stop.flatMap((element) => {
         const matchingStop = stopDb.find(
           (searching) => parseInt(element.tag) === searching.id
         );
@@ -101,7 +101,7 @@ function RouteInfo(props: { line: number }): JSX.Element {
     if (data !== undefined && data.body.Error === undefined) {
       const accordionList: JSX.Element[] = data.body.route.direction.map(
         (element) => {
-          const list = createStopList(element);
+          const list = createStopList(element.stop);
           return (
             <li key={`${element.tag}`}>
               <StopAccordions

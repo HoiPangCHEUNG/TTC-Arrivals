@@ -1,7 +1,6 @@
 import { Text, Title1 } from "@fluentui/react-components";
 import { t } from "i18next";
 import { useCallback, useEffect, useState } from "react";
-import { Trans } from "react-i18next";
 
 import {
   BranchEta,
@@ -101,9 +100,7 @@ export default function EtaCardContainer(props: EtaContainerParams) {
       case processedEtaList.length === 0:
         return (
           <section className="itemInfoPlaceholder">
-            <Text>
-              <Trans>{t("home.etaReminder")}</Trans>
-            </Text>
+            <Text>{t("home.etaReminder")}</Text>
           </section>
         );
       case etaCards === undefined:
