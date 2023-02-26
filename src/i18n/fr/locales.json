@@ -19,13 +19,13 @@
   "lines": {
     "ariaLabel": "entrer un numéro de ligne",
     "placeholder": "entrer un numéro de ligne",
-    "browserTitle": "Ligne {{lineNum}} | Suivant TTC",
+    "browserTitle": "Ligne {{lineNum}} | TTC Suivant",
     "title": "Entrez un numéro de ligne :",
     "number": "Ligne {{lineNum}}",
     "lineAndStopInfo": "Ligne {{lineNum}} Arrêt {{stopNum}} ="
   },
   "stops": {
-    "browserTitle": "Identifiant d'arrêt {{stopId}} | Suivant TTC"
+    "browserTitle": "Identifiant d'arrêt {{stopId}} | TTC Suivant"
   },
   "buttons": {
     "search": "Rechercher",

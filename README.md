@@ -1,6 +1,6 @@
 # TTC Next
 
-TTC Next is a real-time transit application that provides estimated arrival times (eta) for TTC buses and streetcars. With TTC Next, users can quickly and easily plan their commute and stay up-to-date with the latest arrival times. [Demo](https://hoipangcheung.github.io/TTC-Arrivals/)
+TTC Next is a real-time transit application that provides estimated arrival times (eta) for TTC buses and streetcars. With TTC Next, users can quickly and easily plan their commute and stay up-to-date with the latest arrival times. [Demo](https://hoipangcheung.github.io/TTC-Next/)
 
 ## Features
 
@@ -42,7 +42,7 @@ That's it! With just a few simple steps, you can quickly and easily find out whe
 
 ## Contributing
 
-We welcome contributions from other developers! To contribute to TTC Nrrivals, please follow these steps:
+We welcome contributions from other developers! To contribute to TTC Next, please follow these steps:
 
 - Fork the repository.
 - Create a new branch for your changes.
