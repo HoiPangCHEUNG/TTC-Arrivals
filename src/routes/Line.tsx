@@ -3,7 +3,7 @@ import { t } from "i18next";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import RouteInfo from "../components/fetch/FetchRoute";
+import { RouteInfo } from "../components/fetch/FetchRoute";
 
 export default function Line() {
   const params = useParams();
@@ -12,6 +12,7 @@ export default function Line() {
   useEffect(() => {
     document.title = t("lines.browserTitle", { lineNum });
   });
+
   return (
     <main className="linePage">
       <Title1>{t("lines.number", { lineNum })}</Title1>

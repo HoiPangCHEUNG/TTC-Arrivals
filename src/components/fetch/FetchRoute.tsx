@@ -16,7 +16,7 @@ import { StopAccordions } from "../accordions/StopAccordions";
 import { FetchXMLWithCancelToken } from "../utils/fetch";
 import { extractStopDataFromXml } from "../utils/xmlParser";
 
-function RouteInfo(props: { line: number }): JSX.Element {
+export function RouteInfo(props: { line: number }): JSX.Element {
   const [data, setData] = useState<RouteXml>();
   const [lineNum] = useState(props.line);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -97,7 +97,7 @@ function RouteInfo(props: { line: number }): JSX.Element {
     }
   });
 
-  const Route = useCallback(() => {
+  const RouteInfo = useCallback(() => {
     if (data !== undefined && data.body.Error === undefined) {
       const accordionList: JSX.Element[] = data.body.route.direction.map(
         (element) => {
@@ -116,16 +116,15 @@ function RouteInfo(props: { line: number }): JSX.Element {
         }
       );
 
-      return <ul>{accordionList}</ul>;
+      return (
+        <div className="stopsListContainer">
+          <ul>{accordionList}</ul>
+        </div>
+      );
     }
 
     return null;
   }, [data]);
 
-  return (
-    <div className="stopsListContainer">
-      <Route />
-    </div>
-  );
+  return <RouteInfo />;
 }
-export default RouteInfo;

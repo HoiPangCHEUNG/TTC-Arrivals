@@ -44,7 +44,7 @@ export function RoutesInfo() {
     };
   }, []);
 
-  const RouteCards = useCallback(() => {
+  const RoutesInfo = useCallback(() => {
     const cards = routesDb.map((routeItem) => {
       const cardLink = `/lines/${routeItem.tag}`;
       return (
@@ -59,12 +59,12 @@ export function RoutesInfo() {
       );
     });
 
-    return <ul className="routeList">{cards}</ul>;
+    return (
+      <div>
+        <ul className="routeList">{cards}</ul>
+      </div>
+    );
   }, [routesDb]);
 
-  return (
-    <div>
-      <RouteCards />
-    </div>
-  );
+  return <RoutesInfo />;
 }

@@ -65,7 +65,6 @@ export function SettingsDialog(props: { width: number; item: NavItem }) {
 
   const getDialogClassName = useCallback(() => {
     return fluentStyle.dialog;
-    // return props.width < 700 ? fluentStyle.Dialog : "";
   }, [props.width]);
 
   const handleLangChange = useCallback(

@@ -30,42 +30,6 @@ export const router = createBrowserRouter(
       <Route index element={<Home />} />
     </Route>
   ),
-  // TODO: use objects?
-  // [
-  //   {
-  //     path: "/",
-  //     element: <App />,
-  //     children: [
-  //       {
-  //         path: "lines",
-  //         element: <LineSearch />,
-  //         children: [
-  //           {
-  //             path: ":lineId",
-  //             element: <Line />,
-  //             children: [{ path: ":stopNum", element: <LineStopPrediction /> }],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         path: "stops",
-  //         children: [{ path: ":stopId", element: <StopPrediction /> }],
-  //       },
-  //       {
-  //         path: "about",
-  //         element: <About />,
-  //       },
-  //       {
-  //         path: "bookmark",
-  //         element: <Bookmark />,
-  //       },
-  //       {
-  //         path: "*",
-  //         element: <Error />,
-  //       },
-  //     ],
-  //   },
-  // ],
   {
     basename: `${process.env.PUBLIC_URL}`,
   }
