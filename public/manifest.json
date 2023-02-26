@@ -1,6 +1,6 @@
 {
-  "short_name": "TTC Arrivals",
-  "name": "TTC Arrivals",
+  "short_name": "TTC Next",
+  "name": "TTC Next",
   "description": "Showing estimated arrival times (eta) for TTC buses and streetcars",
   "icons": [
     {
