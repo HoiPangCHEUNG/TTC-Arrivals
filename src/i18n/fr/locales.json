@@ -10,7 +10,7 @@
   },
   "home": {
     "title": {
-      "name": "Arrivées TTC",
+      "name": "TTC Suivant",
       "tooltip": "Retourner à l'accueil"
     },
     "etaReminder": "Pour voir vos arrêts fréquemment visités, cliquez sur les icônes de signets lorsque vous êtes sur leurs pages. Vos arrêts sauvegardés apparaîtront ici pour un accès facile !",
@@ -19,13 +19,13 @@
   "lines": {
     "ariaLabel": "entrer un numéro de ligne",
     "placeholder": "entrer un numéro de ligne",
-    "browserTitle": "Ligne {{lineNum}} | Arrivées TTC",
+    "browserTitle": "Ligne {{lineNum}} | TTC Suivant",
     "title": "Entrez un numéro de ligne :",
     "number": "Ligne {{lineNum}}",
     "lineAndStopInfo": "Ligne {{lineNum}} Arrêt {{stopNum}} ="
   },
   "stops": {
-    "browserTitle": "Identifiant d'arrêt {{stopId}} | Arrivées TTC"
+    "browserTitle": "Identifiant d'arrêt {{stopId}} | TTC Suivant"
   },
   "buttons": {
     "search": "Rechercher",

@@ -10,22 +10,22 @@
   },
   "home": {
     "title": {
-      "name": "TTC 到站時間",
+      "name": "TTC 下班車",
       "tooltip": "回主頁"
     },
-    "etaReminder": "溫提下你： 請善用bookmark功能，咁就唔洗成日左搵右搵啦",
+    "etaReminder": "溫提： 請善用bookmark功能，咁就唔洗成日左搵右搵啦",
     "noEtaAvailable": "是咁的，已經無下一班車既資料了... 飲杯咖啡先再check check 啦"
   },
   "lines": {
     "ariaLabel": "輸入路線",
     "placeholder": "輸入路線",
-    "browserTitle": "{{lineNum}} 線 | TTC 到站時間",
+    "browserTitle": "{{lineNum}} 線 | TTC 下班車",
     "title": "輸入路線:",
     "number": "{{lineNum}} 號線",
     "lineAndStopInfo": "{{lineNum}} 線 #{{stopNum}} 站 ="
   },
   "stops": {
-    "browserTitle": "{{stopId}} 站 | TTC 到站時間"
+    "browserTitle": "{{stopId}} 站 | TTC 下班車"
   },
   "buttons": {
     "search": "搜尋",
