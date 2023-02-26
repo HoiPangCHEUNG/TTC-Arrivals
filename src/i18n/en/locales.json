@@ -10,7 +10,7 @@
   },
   "home": {
     "title": {
-      "name": "TTC Arrivals",
+      "name": "TTC Next",
       "tooltip": "Return home"
     },
     "etaReminder": "To see your frequently visited stops, click the bookmark icons when you're on their pages. Your saved stops will appear here for easy access!",
@@ -19,13 +19,13 @@
   "lines": {
     "ariaLabel": "enter a line number",
     "placeholder": "enter a line number",
-    "browserTitle": "Line {{lineNum}} | TTC Arrivals",
+    "browserTitle": "Line {{lineNum}} | TTC Next",
     "title": "Enter a line number:",
     "number": "Line {{lineNum}}",
     "lineAndStopInfo": "Line {{lineNum}} Stop {{stopNum}} ="
   },
   "stops": {
-    "browserTitle": "Stop ID {{stopId}} | TTC Arrivals"
+    "browserTitle": "Stop ID {{stopId}} | TTC Next"
   },
   "buttons": {
     "search": "Search",
