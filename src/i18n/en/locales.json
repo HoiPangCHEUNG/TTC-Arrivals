@@ -31,7 +31,9 @@
     "search": "Search",
     "mapPin": "View location in Google Maps",
     "busIcon": "View stop ETA",
-    "languageChange": "language selection"
+    "languageChange": "Language selection",
+    "appearance": "Appearance",
+    "darkMode": "Dark Mode"
   },
   "error": {
     "notFound": "Not Found 404: Cant see a thing Captain =[ "
@@ -48,7 +50,7 @@
   },
   "lang": {
     "en": "English",
-    "fr": "Français (Traduit par ChatGpt)",
+    "fr": "Français (par ChatGpt)",
     "zh": "中文"
   }
 }

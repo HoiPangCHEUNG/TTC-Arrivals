@@ -29,9 +29,11 @@
   },
   "buttons": {
     "search": "Rechercher",
-    "mapPin": "Voir l'emplacement dans Google Maps",
-    "busIcon": "Voir l'ETA de l'arrêt",
-    "languageChange": "sélection de la langue"
+    "mapPin": "Afficher l'emplacement sur Google Maps",
+    "busIcon": "Afficher l'heure d'arrivée du bus",
+    "languageChange": "Sélection de la langue",
+    "appearance": "Apparence",
+    "darkMode": "Mode sombre"
   },
   "error": {
     "notFound": "Not Found 404: Je ne peux rien voir, Capitaine =[ "
@@ -48,7 +50,7 @@
   },
   "lang": {
     "en": "English",
-    "fr": "Français (Traduit par ChatGpt)",
+    "fr": "Français (par ChatGpt)",
     "zh": "中文"
   }
 }

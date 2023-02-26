@@ -3,6 +3,7 @@ import { makeStyles, shorthands, tokens } from "@fluentui/react-components";
 export const fluentStyles = makeStyles({
   fluentProvider: {
     height: "100%",
+    ...shorthands.overflow("auto"),
   },
   removeButton: {
     minHeight: "32px",
@@ -22,18 +23,25 @@ export const fluentStyles = makeStyles({
     height: "100%",
     width: "100%",
   },
+  radioGroup: {
+    ...shorthands.overflow("hidden"),
+  },
+  dialog: {
+    width: "70%",
+  },
   card: {
     ...shorthands.overflow("visible"),
+    backgroundColor: tokens.colorNeutralBackground3,
     "&:hover": {
-      backgroundColor: tokens.colorNeutralBackground2,
+      backgroundColor: tokens.colorNeutralBackground1,
     },
   },
   etaCard: {
     width: "100%",
-    boxShadow: "0 0 8px rgba(0,0,0,0.24), 0 14px 28px rgba(0,0,0,0.28);",
     ...shorthands.overflow("visible"),
+    backgroundColor: tokens.colorNeutralBackground3,
     "&:hover": {
-      backgroundColor: tokens.colorNeutralBackground2,
+      backgroundColor: tokens.colorNeutralBackground1,
     },
   },
   cardHeader: {
@@ -60,8 +68,11 @@ export const fluentStyles = makeStyles({
       paddingLeft: "0px",
     },
   },
+  switch: {
+    marginTop: "8px",
+  },
   countDown: {
-    fontFamily: ["monospace", "PT Mono"],
+    fontFamily: ["monospace", "Sans-serif"],
     marginLeft: "auto",
     width: "max-content",
   },

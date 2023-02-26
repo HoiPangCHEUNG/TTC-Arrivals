@@ -1,6 +1,6 @@
 import { Button, Input } from "@fluentui/react-components";
+import { t } from "i18next";
 import { SetStateAction, useCallback, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 
 import EtaCardContainer from "../components/etaCard/EtaCardContainer";
 import { multiRouteDataEndpoint } from "../constants/dataEndpoints";
@@ -13,7 +13,6 @@ export default function Home() {
   const [input, setInput] = useState("");
   const [dataUrl, setDataUrl] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
-  const { t } = useTranslation();
   const { navigate } = useNavigate();
   const fluentStyle = fluentStyles();
   const favouriteEtas: FavouriteEtaRedux = useAppSelector(

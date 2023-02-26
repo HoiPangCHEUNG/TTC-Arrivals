@@ -1,10 +1,7 @@
 import { Text, Title1 } from "@fluentui/react-components";
 import { t } from "i18next";
 import { useCallback, useEffect, useState } from "react";
-import { Trans } from "react-i18next";
-import { Link } from "react-router-dom";
 
-import { EtaPredictionXml } from "../../models/etaXml";
 import {
   BranchEta,
   EtaContainerParams,
@@ -12,13 +9,11 @@ import {
 } from "../../models/favouriteEta";
 import useNavigate from "../../routes/navigate";
 import { useAppSelector } from "../../store";
-import RawDisplay from "../rawDisplay/RawDisplay";
 import { FetchXMLWithCancelToken } from "../utils/fetch";
 import { extractEtaDataFromXml } from "../utils/xmlParser";
 import { EtaCard } from "./EtaCard";
 
 export default function EtaCardContainer(props: EtaContainerParams) {
-  const [rawEta, setRawEta] = useState<EtaPredictionXml>();
   const [processedEtaList, setProcessedEtaList] = useState<BranchEta[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [toggleFetch, setToggleFetch] = useState(false);
@@ -31,7 +26,7 @@ export default function EtaCardContainer(props: EtaContainerParams) {
   // called every minute to fetch latest data
   useEffect(() => {
     const interval = setInterval(() => {
-      setToggleFetch((prevToggleFetch) => !prevToggleFetch);
+      setToggleFetch((prevVal) => !prevVal);
     }, 60000);
 
     // Return a function that will clear the interval on unmount
@@ -60,7 +55,6 @@ export default function EtaCardContainer(props: EtaContainerParams) {
           return;
         }
 
-        setRawEta(parsedData);
         setProcessedEtaList(extractEtaDataFromXml(parsedData));
         setIsLoaded(true);
       });
@@ -95,9 +89,7 @@ export default function EtaCardContainer(props: EtaContainerParams) {
 
   const Title = useCallback(() => {
     return processedEtaList[0] !== undefined && props.shdShowTitle ? (
-      <Link to={`/lines/${processedEtaList[0].routeTag}`}>
-        <Title1 className="TitleLink">{processedEtaList[0].stopTitle}</Title1>
-      </Link>
+      <Title1>{processedEtaList[0].stopTitle}</Title1>
     ) : null;
   }, [processedEtaList]);
 
@@ -108,9 +100,7 @@ export default function EtaCardContainer(props: EtaContainerParams) {
       case processedEtaList.length === 0:
         return (
           <section className="itemInfoPlaceholder">
-            <Text>
-              <Trans>{t("home.etaReminder")}</Trans>
-            </Text>
+            <Text>{t("home.etaReminder")}</Text>
           </section>
         );
       case etaCards === undefined:
@@ -135,7 +125,6 @@ export default function EtaCardContainer(props: EtaContainerParams) {
     <div className="etaCardContainer">
       <Title />
       <EtaCards />
-      <RawDisplay data={rawEta} />
     </div>
   );
 }

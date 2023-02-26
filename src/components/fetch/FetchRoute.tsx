@@ -13,11 +13,10 @@ import { LineStop } from "../../models/lineStop";
 import useNavigate from "../../routes/navigate";
 import { fluentStyles } from "../../styles/fluent";
 import { StopAccordions } from "../accordions/StopAccordions";
-import RawDisplay from "../rawDisplay/RawDisplay";
 import { FetchXMLWithCancelToken } from "../utils/fetch";
 import { extractStopDataFromXml } from "../utils/xmlParser";
 
-function RouteInfo(props: { line: number }): JSX.Element {
+export function RouteInfo(props: { line: number }): JSX.Element {
   const [data, setData] = useState<RouteXml>();
   const [lineNum] = useState(props.line);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -26,8 +25,8 @@ function RouteInfo(props: { line: number }): JSX.Element {
   const fluentStyle = fluentStyles();
 
   const createStopList = useCallback(
-    (stuff: { stop: { tag: string }[] }) => {
-      return stuff.stop.flatMap((element) => {
+    (stop: { tag: string }[]) => {
+      return stop.flatMap((element) => {
         const matchingStop = stopDb.find(
           (searching) => parseInt(element.tag) === searching.id
         );
@@ -98,11 +97,11 @@ function RouteInfo(props: { line: number }): JSX.Element {
     }
   });
 
-  const Route = useCallback(() => {
+  const RouteInfo = useCallback(() => {
     if (data !== undefined && data.body.Error === undefined) {
       const accordionList: JSX.Element[] = data.body.route.direction.map(
         (element) => {
-          const list = createStopList(element);
+          const list = createStopList(element.stop);
           return (
             <li key={`${element.tag}`}>
               <StopAccordions
@@ -117,17 +116,15 @@ function RouteInfo(props: { line: number }): JSX.Element {
         }
       );
 
-      return <ul>{accordionList}</ul>;
+      return (
+        <div className="stopsListContainer">
+          <ul>{accordionList}</ul>
+        </div>
+      );
     }
 
     return null;
   }, [data]);
 
-  return (
-    <div className="stopsListContainer">
-      <Route />
-      <RawDisplay data={data} />
-    </div>
-  );
+  return <RouteInfo />;
 }
-export default RouteInfo;
