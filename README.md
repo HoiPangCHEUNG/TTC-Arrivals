@@ -1,12 +1,15 @@
-# TTC Arrivals
+# TTC Next
 
-TTC-Arrivals is a real-time transit application that provides estimated arrival times (eta) for TTC buses and streetcars. With TTC-Arrivals, users can quickly and easily plan their commute and stay up-to-date with the latest arrival times.
+TTC Next is a real-time transit application that provides estimated arrival times (eta) for TTC buses and streetcars. With TTC Next, users can quickly and easily plan their commute and stay up-to-date with the latest arrival times. [Demo](https://hoipangcheung.github.io/TTC-Arrivals/)
 
 ## Features
 
+You can bookmark specific estimated time of arrival for your next bus or streetcar to the home page. With this feature, you can instantly access the information you need whenever you open the app, without having to search for it again. This feature makes it easy to keep track of the ETAs for your preferred routes and stops.
+
+Other features include:
+
 - Real-time arrival data for TTC buses and streetcars
 - Complete route information
-- Watchlist for frequently visited stops and routes
 
 ## Prerequisites
 
@@ -39,7 +42,7 @@ That's it! With just a few simple steps, you can quickly and easily find out whe
 
 ## Contributing
 
-We welcome contributions from other developers! To contribute to TTC-Arrivals, please follow these steps:
+We welcome contributions from other developers! To contribute to TTC Nrrivals, please follow these steps:
 
 - Fork the repository.
 - Create a new branch for your changes.
@@ -48,11 +51,11 @@ We welcome contributions from other developers! To contribute to TTC-Arrivals, p
 
 ## License
 
-TTC-Arrivals is licensed under the MIT License.
+TTC Next is licensed under the MIT License.
 
 ## References
 
-TTC-Arrivals is built using data from [TTC Real-Time Next Vehicle Arrival (NVAS)](https://open.toronto.ca/dataset/ttc-real-time-next-vehicle-arrival-nvas/).
+TTC Next is built using data from [TTC Real-Time Next Vehicle Arrival (NVAS)](https://open.toronto.ca/dataset/ttc-real-time-next-vehicle-arrival-nvas/).
 
 ## Inspiration
 
