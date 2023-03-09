@@ -7,11 +7,7 @@ import {
 import { useCallback } from "react";
 import { Link } from "react-router-dom";
 
-import {
-  BranchEta,
-  FavouriteEta,
-  FavouriteEtaRedux,
-} from "../../models/favouriteEta";
+import { BranchEta, FavouriteEta, FavouriteEtaRedux } from "../../models/eta";
 import { useAppDispatch, useAppSelector } from "../../store";
 import {
   addFavouriteadEta,

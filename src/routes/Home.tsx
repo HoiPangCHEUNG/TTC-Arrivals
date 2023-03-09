@@ -4,7 +4,7 @@ import { SetStateAction, useCallback, useEffect, useState } from "react";
 
 import EtaCardContainer from "../components/etaCard/EtaCardContainer";
 import { multiRouteDataEndpoint } from "../constants/dataEndpoints";
-import { FavouriteEtaRedux } from "../models/favouriteEta";
+import { FavouriteEtaRedux } from "../models/eta";
 import { useAppSelector } from "../store";
 import { fluentStyles } from "../styles/fluent";
 import useNavigate from "./navigate";

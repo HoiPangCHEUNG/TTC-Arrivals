@@ -1,37 +1,30 @@
-import { XMLParser } from "fast-xml-parser";
+import { BranchEta } from "../../models/eta";
+import { EtaPredictionJson } from "../../models/etaJson";
+import { StopDetail } from "../../models/route";
+import { RouteJson } from "../../models/routeJson";
 
-import { EtaPredictionXml, RouteXml } from "../../models/etaXml";
-import { BranchEta } from "../../models/favouriteEta";
-import { LineStop } from "../../models/lineStop";
+export function extractRouteDataFromJson(json: RouteJson): StopDetail[] {
+  if (!json || !json.route || json.Error) return [];
+  return json.route.stop.flatMap((element) => {
+    if (element.stopId === undefined) return [];
 
-export const xmlParser = new XMLParser({
-  ignoreAttributes: false,
-  attributeNamePrefix: "",
-});
-
-export function extractStopDataFromXml(json: RouteXml): LineStop[] {
-  if (json.body.Error === undefined) {
-    return json.body.route.stop.flatMap((element) => {
-      if (element.stopId === undefined) return [];
-
-      return {
-        id: parseInt(element.tag),
-        name: element.title,
-        latlong: [parseFloat(element.lat), parseFloat(element.lon)],
-        stopId: parseInt(element.stopId),
-      };
-    });
-  }
-
-  return [];
+    return {
+      id: parseInt(element.tag),
+      name: element.title,
+      latlong: { lat: parseFloat(element.lat), long: parseFloat(element.lon) },
+      stopId: parseInt(element.stopId),
+    };
+  });
 }
 
-export const extractEtaDataFromXml = (json: EtaPredictionXml): BranchEta[] => {
-  if (json.body.Error) return [];
+export const extractEtaDataFromJson = (
+  json: EtaPredictionJson
+): BranchEta[] => {
+  if (!json || !json.predictions || json.Error) return [];
 
-  const predictions = Array.isArray(json.body.predictions)
-    ? json.body.predictions
-    : [json.body.predictions];
+  const predictions = Array.isArray(json.predictions)
+    ? json.predictions
+    : [json.predictions];
 
   return predictions
     .map((prediction) => {
@@ -39,9 +32,9 @@ export const extractEtaDataFromXml = (json: EtaPredictionXml): BranchEta[] => {
         return [
           {
             id: "",
-            routeTag: prediction.routeTag,
+            routeTag: parseInt(prediction.routeTag),
             branchTag: "",
-            stopTag: prediction.stopTag,
+            stopTag: parseInt(prediction.stopTag),
             stopTitle: prediction.stopTitle,
             routeTitle: "",
             destination: "",
@@ -65,7 +58,7 @@ export const extractEtaDataFromXml = (json: EtaPredictionXml): BranchEta[] => {
           branchTag =
             branchTag === "" && eta.branch !== "" ? eta.branch : branchTag;
           dirTag = dirTag === "" && eta.dirTag !== "" ? eta.dirTag : dirTag;
-          return eta.minutes;
+          return parseInt(eta.minutes);
         });
 
         // yes I know, dont't judge me...
@@ -74,9 +67,9 @@ export const extractEtaDataFromXml = (json: EtaPredictionXml): BranchEta[] => {
 
         return {
           id: `${dirTag}-${prediction.stopTag}`,
-          routeTag: prediction.routeTag,
+          routeTag: parseInt(prediction.routeTag),
           branchTag,
-          stopTag: prediction.stopTag,
+          stopTag: parseInt(prediction.stopTag),
           stopTitle: prediction.stopTitle,
           etas: branchEtas,
           destination,

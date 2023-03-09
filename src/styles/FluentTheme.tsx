@@ -15,7 +15,6 @@ export function FluentTheme({ children }: { children: JSX.Element }) {
   const settings: settingsRedux = useAppSelector((state) => state.settings);
 
   const isDarkMode = useCallback(() => {
-    console.log();
     return (
       settingsSelectors.selectById(
         store.getState().settings,

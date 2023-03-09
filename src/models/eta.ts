@@ -1,7 +1,7 @@
 export interface FavouriteEta {
   id: string;
-  stopTag: string;
-  routeTag: string;
+  stopTag: number;
+  routeTag: number;
   stopId?: string;
 }
 
