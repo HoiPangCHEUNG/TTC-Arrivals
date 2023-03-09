@@ -2,6 +2,7 @@ import { Text, Title1 } from "@fluentui/react-components";
 import { t } from "i18next";
 import { useCallback, useEffect, useState } from "react";
 
+import { AbortError } from "../../constants/errors";
 import {
   BranchEta,
   EtaContainerParams,
@@ -37,24 +38,31 @@ export default function EtaCardContainer(props: EtaContainerParams) {
     const controller = new AbortController();
 
     const fetchEtaData = async () => {
-      const { data, error } = await FetchTtcData(props.dataUrl, {
+      const data = await FetchTtcData(props.dataUrl, {
         signal: controller.signal,
         method: "GET",
       });
 
-      return { data, error };
+      return data;
     };
 
     if (props.dataUrl.length > 0) {
-      fetchEtaData().then(({ data, error }) => {
-        if (error || !data) {
-          navigate("/404");
-          return;
-        }
+      fetchEtaData()
+        .then((data) => {
+          if (!data) {
+            return;
+          }
 
-        setProcessedEtaList(extractEtaDataFromJson(data));
-        setIsLoaded(true);
-      });
+          if (data.Error) {
+            navigate("/404");
+          }
+
+          setProcessedEtaList(extractEtaDataFromJson(data));
+          setIsLoaded(true);
+        })
+        .catch((e) => {
+          if (e.name !== AbortError) navigate("/404");
+        });
     } else if (props.isLoaded) {
       setIsLoaded(true);
     }

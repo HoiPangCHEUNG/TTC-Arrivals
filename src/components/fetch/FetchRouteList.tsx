@@ -4,11 +4,14 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { routeListEndpoint } from "../../constants/dataEndpoints";
+import { AbortError } from "../../constants/errors";
+import useNavigate from "../../routes/navigate";
 import { fluentStyles } from "../../styles/fluent";
 import { FetchTtcData } from "../utils/fetch";
 import { parseRouteTitle } from "../utils/routeName";
 
 export function RoutesInfo() {
+  const { navigate } = useNavigate();
   const [routesDb, setRoutesDb] = useState<{ tag: number; title: string }[]>(
     []
   );
@@ -18,23 +21,31 @@ export function RoutesInfo() {
     const controller = new AbortController();
 
     const fetchEtaData = async () => {
-      const { data, error } = await FetchTtcData(routeListEndpoint, {
+      const data = await FetchTtcData(routeListEndpoint, {
         signal: controller.signal,
         method: "GET",
       });
 
-      return { data, error };
+      return data;
     };
 
-    fetchEtaData().then(({ data, error }) => {
-      if (error || !data) {
-        return;
-      }
+    fetchEtaData()
+      .then((data) => {
+        if (!data) {
+          return;
+        }
 
-      if (data.route.length > 0) {
-        setRoutesDb(data.route);
-      }
-    });
+        if (data.Error) {
+          navigate("/404");
+        }
+
+        if (data.route.length > 0) {
+          setRoutesDb(data.route);
+        }
+      })
+      .catch((e) => {
+        if (e.name !== AbortError) navigate("/404");
+      });
 
     return () => {
       controller.abort();

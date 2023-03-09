@@ -1,14 +1,7 @@
-import { XMLParser } from "fast-xml-parser";
-
 import { BranchEta } from "../../models/eta";
 import { EtaPredictionJson } from "../../models/etaJson";
 import { StopDetail } from "../../models/route";
 import { RouteJson } from "../../models/routeJson";
-
-export const xmlParser = new XMLParser({
-  ignoreAttributes: false,
-  attributeNamePrefix: "",
-});
 
 export function extractRouteDataFromJson(json: RouteJson): StopDetail[] {
   if (!json || !json.route || json.Error) return [];

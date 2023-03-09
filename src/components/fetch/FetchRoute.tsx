@@ -4,6 +4,7 @@ import {
   googleMapEndpoint,
   lineDataEndpoint,
 } from "../../constants/dataEndpoints";
+import { AbortError } from "../../constants/errors";
 import { StopDetail } from "../../models/route";
 import { RouteJson } from "../../models/routeJson";
 import useNavigate from "../../routes/navigate";
@@ -14,7 +15,6 @@ import { extractRouteDataFromJson } from "../utils/jsonParser";
 export function RouteInfo(props: { line: number }): JSX.Element {
   const [data, setData] = useState<RouteJson>();
   const [lineNum] = useState(props.line);
-  const [isLoaded, setIsLoaded] = useState(false);
   const { navigate } = useNavigate();
   const [stopDb, setStopDb] = useState<StopDetail[]>([]);
 
@@ -46,43 +46,38 @@ export function RouteInfo(props: { line: number }): JSX.Element {
     const controller = new AbortController();
 
     const fetchStopsData = async () => {
-      const { data, error } = await FetchTtcData(
-        `${lineDataEndpoint}${lineNum}`,
-        {
-          signal: controller.signal,
-          method: "GET",
-        }
-      );
+      const data = await FetchTtcData(`${lineDataEndpoint}${lineNum}`, {
+        signal: controller.signal,
+        method: "GET",
+      });
 
-      return { data, error };
+      return data;
     };
 
-    fetchStopsData().then(({ data, error }) => {
-      if (error || !data) {
-        return;
-      }
+    fetchStopsData()
+      .then((data) => {
+        if (!data) {
+          return;
+        }
 
-      setData(data);
-      setStopDb(extractRouteDataFromJson(data));
-      setIsLoaded(true);
-    });
+        if (data.Error) {
+          navigate("/404");
+        }
+
+        setData(data);
+        setStopDb(extractRouteDataFromJson(data));
+      })
+      .catch((e) => {
+        if (e.name !== AbortError) navigate("/404");
+      });
 
     return () => {
       controller.abort();
     };
   }, []);
 
-  useEffect(() => {
-    if (isLoaded && (data === undefined || data?.Error !== undefined)) {
-      console.log("GGG");
-      navigate("/404");
-    }
-  });
-
   const RouteInfo = useCallback(() => {
     if (data && !data.Error) {
-      console.log("??");
-      console.log(data);
       const accordionList: JSX.Element[] = data.route.direction.map(
         (element) => {
           const list = createStopList(element.stop);
