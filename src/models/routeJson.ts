@@ -1,16 +1,10 @@
-export interface RouteJson {
-  copyright: string;
-  route: RouteDetail;
-  Error?: {
-    content: string;
-  };
+interface StopDetail {
+  lat: string;
+  lon: string;
+  stopId: string;
+  tag: string;
+  title: string;
 }
-
-interface RouteDetail {
-  stop: StopDetail[];
-  direction: DirectionDetail[];
-}
-
 interface DirectionDetail {
   branch: string;
   name: string;
@@ -18,11 +12,15 @@ interface DirectionDetail {
   tag: string;
   title: string;
 }
+interface RouteDetail {
+  stop: StopDetail[];
+  direction: DirectionDetail[];
+}
 
-interface StopDetail {
-  lat: string;
-  lon: string;
-  stopId: string;
-  tag: string;
-  title: string;
+export interface RouteJson {
+  copyright: string;
+  route: RouteDetail;
+  Error?: {
+    content: string;
+  };
 }

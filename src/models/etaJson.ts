@@ -1,9 +1,13 @@
-export interface EtaPredictionJson {
-  copyright: string;
-  predictions: EtaPrediction | EtaPrediction[];
-  Error?: {
-    content: string;
-  };
+interface EtaPredictionDetail {
+  branch: string;
+  dirTag: string;
+  minutes: string;
+  seconds: string;
+}
+
+interface EtaDirection {
+  title: string;
+  prediction: EtaPredictionDetail | EtaPredictionDetail[];
 }
 
 interface EtaPrediction {
@@ -14,15 +18,10 @@ interface EtaPrediction {
   stopTag: string;
   stopTitle: string;
 }
-
-interface EtaDirection {
-  title: string;
-  prediction: EtaPredictionDetail | EtaPredictionDetail[];
-}
-
-interface EtaPredictionDetail {
-  branch: string;
-  dirTag: string;
-  minutes: string;
-  seconds: string;
+export interface EtaPredictionJson {
+  copyright: string;
+  predictions: EtaPrediction | EtaPrediction[];
+  Error?: {
+    content: string;
+  };
 }
