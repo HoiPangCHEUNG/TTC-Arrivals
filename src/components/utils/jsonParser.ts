@@ -1,18 +1,41 @@
+import { googleMapEndpoint } from "../../constants/dataEndpoints";
 import { BranchEta } from "../../models/eta";
 import { EtaPredictionJson } from "../../models/etaJson";
-import { StopDetail } from "../../models/route";
-import { RouteJson } from "../../models/routeJson";
+import { ProcessedRouteDetail } from "../../models/route";
+import { RouteJson, StopDetail } from "../../models/routeJson";
 
-export function extractRouteDataFromJson(json: RouteJson): StopDetail[] {
+export function extractRouteDataFromJson(
+  json: RouteJson
+): ProcessedRouteDetail[] {
   if (!json || !json.route || json.Error) return [];
-  return json.route.stop.flatMap((element) => {
-    if (element.stopId === undefined) return [];
+
+  const stopDetailDict: Map<string, StopDetail> = new Map();
+  json.route.stop.forEach((stop) => {
+    stopDetailDict.set(stop.tag, stop);
+  });
+
+  return json.route.direction.map((direction) => {
+    const processedStopList = direction.stop.flatMap((stopTag) => {
+      if (stopDetailDict.has(stopTag.tag)) {
+        const item = stopDetailDict.get(stopTag.tag);
+        if (!item) return [];
+        return {
+          id: item.tag,
+          title: item.title,
+          latLong: `${googleMapEndpoint}${item.lat}+${item.lon}`,
+          stopUrl: `/stops/${item.stopId}`,
+        };
+      }
+
+      return [];
+    });
 
     return {
-      id: parseInt(element.tag),
-      name: element.title,
-      latlong: { lat: parseFloat(element.lat), long: parseFloat(element.lon) },
-      stopId: parseInt(element.stopId),
+      processedStopList,
+      name: direction.name,
+      tag: direction.tag,
+      title: direction.title,
+      branch: direction.branch,
     };
   });
 }
