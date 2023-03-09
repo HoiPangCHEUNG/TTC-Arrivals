@@ -1,4 +1,4 @@
-interface StopDetail {
+export interface StopDetail {
   lat: string;
   lon: string;
   stopId: string;

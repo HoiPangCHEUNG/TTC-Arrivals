@@ -1,24 +1,22 @@
 export interface ProcessedStopDetail {
-  id: number;
-  latlong: string;
+  id: string;
+  title: string;
+  latLong: string;
+  stopUrl: string;
+}
+
+export interface ProcessedRouteDetail {
   name: string;
-  stopId: string;
+  tag: string;
+  title: string;
+  branch: string;
+  processedStopList: ProcessedStopDetail[];
 }
 
 export interface StopAccordionsParams {
   direction: string;
-  lineNum: number;
+  lineNum: string;
   tag: string;
   title: string;
-  stopList: ProcessedStopDetail[];
-}
-
-export interface StopDetail {
-  id: number;
-  name: string;
-  latlong: {
-    lat: number;
-    long: number;
-  };
-  stopId: number;
+  processedStopList: ProcessedStopDetail[];
 }

@@ -5,13 +5,13 @@ interface EtaPredictionDetail {
   seconds: string;
 }
 
-interface EtaDirection {
+interface EtaDirectionDetail {
   title: string;
   prediction: EtaPredictionDetail | EtaPredictionDetail[];
 }
 
-interface EtaPrediction {
-  direction: EtaDirection | EtaDirection[];
+interface PredictioDetail {
+  direction: EtaDirectionDetail | EtaDirectionDetail[];
   dirTitleBecauseNoPredictions?: string;
   routeTag: string;
   routeTitle: string;
@@ -20,7 +20,7 @@ interface EtaPrediction {
 }
 export interface EtaPredictionJson {
   copyright: string;
-  predictions: EtaPrediction | EtaPrediction[];
+  predictions: PredictioDetail | PredictioDetail[];
   Error?: {
     content: string;
   };
