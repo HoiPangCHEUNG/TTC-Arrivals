@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import { routeListEndpoint } from "../../constants/dataEndpoints";
 import { fluentStyles } from "../../styles/fluent";
-import { FetchXMLWithCancelToken } from "../utils/fetch";
+import { FetchTtcData } from "../utils/fetch";
 import { parseRouteTitle } from "../utils/routeName";
 
 export function RoutesInfo() {
@@ -18,24 +18,21 @@ export function RoutesInfo() {
     const controller = new AbortController();
 
     const fetchEtaData = async () => {
-      const { parsedData, error } = await FetchXMLWithCancelToken(
-        routeListEndpoint,
-        {
-          signal: controller.signal,
-          method: "GET",
-        }
-      );
+      const { data, error } = await FetchTtcData(routeListEndpoint, {
+        signal: controller.signal,
+        method: "GET",
+      });
 
-      return { parsedData, error };
+      return { data, error };
     };
 
-    fetchEtaData().then(({ parsedData, error }) => {
-      if (error || !parsedData) {
+    fetchEtaData().then(({ data, error }) => {
+      if (error || !data) {
         return;
       }
 
-      if (parsedData.body.route.length > 0) {
-        setRoutesDb(parsedData.body.route);
+      if (data.route.length > 0) {
+        setRoutesDb(data.route);
       }
     });
 

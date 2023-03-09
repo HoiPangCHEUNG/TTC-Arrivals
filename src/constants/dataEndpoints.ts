@@ -1,4 +1,4 @@
-const endpoint = "https://webservices.umoiq.com/service/publicXMLFeed?command=";
+const endpoint = "https://retro.umoiq.com/service/publicJSONFeed?command=";
 
 export const multiRouteDataEndpoint = `${endpoint}predictionsForMultiStops&a=ttc`;
 

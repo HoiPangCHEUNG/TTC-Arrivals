@@ -1,17 +1,12 @@
-import { xmlParser } from "./xmlParser";
-
 type RequestInit = globalThis.RequestInit;
-export async function FetchXMLWithCancelToken(
-  url: string,
-  options: RequestInit
-) {
+
+export async function FetchTtcData(url: string, options: RequestInit) {
   try {
     const response = await fetch(url, options);
-    const data = await response.text();
-    const parsedData = xmlParser.parse(data);
+    const data = await response.json();
 
-    return { data, parsedData };
+    return { data, error: undefined };
   } catch (e) {
-    return { data: "", parsedData: undefined, error: Error(`${e}`) };
+    return { data: undefined, error: Error(`${e}`) };
   }
 }

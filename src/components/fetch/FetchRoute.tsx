@@ -1,28 +1,22 @@
-import { Badge, Button } from "@fluentui/react-components";
-import { Map24Filled, VehicleBus16Filled } from "@fluentui/react-icons";
-import { t } from "i18next";
 import { useCallback, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 import {
   googleMapEndpoint,
   lineDataEndpoint,
 } from "../../constants/dataEndpoints";
-import { RouteXml } from "../../models/etaXml";
-import { LineStop } from "../../models/lineStop";
+import { StopDetail } from "../../models/route";
+import { RouteJson } from "../../models/routeJson";
 import useNavigate from "../../routes/navigate";
-import { fluentStyles } from "../../styles/fluent";
 import { StopAccordions } from "../accordions/StopAccordions";
-import { FetchXMLWithCancelToken } from "../utils/fetch";
-import { extractStopDataFromXml } from "../utils/xmlParser";
+import { FetchTtcData } from "../utils/fetch";
+import { extractRouteDataFromJson } from "../utils/jsonParser";
 
 export function RouteInfo(props: { line: number }): JSX.Element {
-  const [data, setData] = useState<RouteXml>();
+  const [data, setData] = useState<RouteJson>();
   const [lineNum] = useState(props.line);
   const [isLoaded, setIsLoaded] = useState(false);
   const { navigate } = useNavigate();
-  const [stopDb, setStopDb] = useState<LineStop[]>([]);
-  const fluentStyle = fluentStyles();
+  const [stopDb, setStopDb] = useState<StopDetail[]>([]);
 
   const createStopList = useCallback(
     (stop: { tag: string }[]) => {
@@ -34,27 +28,14 @@ export function RouteInfo(props: { line: number }): JSX.Element {
         // skip not found data
         if (!matchingStop) return [];
 
-        const latLongLink = `${googleMapEndpoint}${matchingStop?.latlong[0]}+${matchingStop?.latlong[1]}`;
+        const latLongLink = `${googleMapEndpoint}${matchingStop?.latlong.lat}+${matchingStop?.latlong.long}`;
         const stopLink = `/stops/${matchingStop?.stopId}`;
 
         return {
-          id: (
-            <Badge className={fluentStyle.badge} appearance="outline">
-              {matchingStop?.id}
-            </Badge>
-          ),
-          key: matchingStop?.id ?? 0,
-          name: `${matchingStop?.name}`,
-          latlong: (
-            <a title={t("buttons.mapPin") ?? ""} href={latLongLink}>
-              <Button icon={<Map24Filled />} />
-            </a>
-          ),
-          stopId: (
-            <Link to={stopLink} title={t("buttons.busIcon") ?? ""}>
-              <Button icon={<VehicleBus16Filled />} />
-            </Link>
-          ),
+          id: matchingStop?.id,
+          name: matchingStop?.name,
+          latlong: latLongLink,
+          stopId: stopLink,
         };
       });
     },
@@ -65,7 +46,7 @@ export function RouteInfo(props: { line: number }): JSX.Element {
     const controller = new AbortController();
 
     const fetchStopsData = async () => {
-      const { parsedData, error } = await FetchXMLWithCancelToken(
+      const { data, error } = await FetchTtcData(
         `${lineDataEndpoint}${lineNum}`,
         {
           signal: controller.signal,
@@ -73,16 +54,16 @@ export function RouteInfo(props: { line: number }): JSX.Element {
         }
       );
 
-      return { parsedData, error };
+      return { data, error };
     };
 
-    fetchStopsData().then(({ parsedData, error }) => {
-      if (error || !parsedData) {
+    fetchStopsData().then(({ data, error }) => {
+      if (error || !data) {
         return;
       }
 
-      setData(parsedData);
-      setStopDb(extractStopDataFromXml(parsedData));
+      setData(data);
+      setStopDb(extractRouteDataFromJson(data));
       setIsLoaded(true);
     });
 
@@ -92,14 +73,17 @@ export function RouteInfo(props: { line: number }): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (isLoaded && (data === undefined || data?.body.Error !== undefined)) {
+    if (isLoaded && (data === undefined || data?.Error !== undefined)) {
+      console.log("GGG");
       navigate("/404");
     }
   });
 
   const RouteInfo = useCallback(() => {
-    if (data !== undefined && data.body.Error === undefined) {
-      const accordionList: JSX.Element[] = data.body.route.direction.map(
+    if (data && !data.Error) {
+      console.log("??");
+      console.log(data);
+      const accordionList: JSX.Element[] = data.route.direction.map(
         (element) => {
           const list = createStopList(element.stop);
           return (
@@ -107,8 +91,8 @@ export function RouteInfo(props: { line: number }): JSX.Element {
               <StopAccordions
                 title={element.title}
                 direction={element.name}
-                lineNum={element.branch}
-                result={list}
+                lineNum={parseInt(element.branch)}
+                stopList={list}
                 tag={element.tag}
               />
             </li>

@@ -6,11 +6,11 @@ import {
   BranchEta,
   EtaContainerParams,
   FavouriteEtaRedux,
-} from "../../models/favouriteEta";
+} from "../../models/eta";
 import useNavigate from "../../routes/navigate";
 import { useAppSelector } from "../../store";
-import { FetchXMLWithCancelToken } from "../utils/fetch";
-import { extractEtaDataFromXml } from "../utils/xmlParser";
+import { FetchTtcData } from "../utils/fetch";
+import { extractEtaDataFromJson } from "../utils/jsonParser";
 import { EtaCard } from "./EtaCard";
 
 export default function EtaCardContainer(props: EtaContainerParams) {
@@ -37,25 +37,22 @@ export default function EtaCardContainer(props: EtaContainerParams) {
     const controller = new AbortController();
 
     const fetchEtaData = async () => {
-      const { parsedData, error } = await FetchXMLWithCancelToken(
-        props.dataUrl,
-        {
-          signal: controller.signal,
-          method: "GET",
-        }
-      );
+      const { data, error } = await FetchTtcData(props.dataUrl, {
+        signal: controller.signal,
+        method: "GET",
+      });
 
-      return { parsedData, error };
+      return { data, error };
     };
 
     if (props.dataUrl.length > 0) {
-      fetchEtaData().then(({ parsedData, error }) => {
-        if (error || !parsedData || parsedData.body.Error) {
+      fetchEtaData().then(({ data, error }) => {
+        if (error || !data) {
           navigate("/404");
           return;
         }
 
-        setProcessedEtaList(extractEtaDataFromXml(parsedData));
+        setProcessedEtaList(extractEtaDataFromJson(data));
         setIsLoaded(true);
       });
     } else if (props.isLoaded) {
