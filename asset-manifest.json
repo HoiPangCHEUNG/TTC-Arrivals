@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/TTC-Next/static/css/main.eac3d18e.css",
-    "main.js": "/TTC-Next/static/js/main.8c43e5e7.js",
+    "main.js": "/TTC-Next/static/js/main.1698b050.js",
     "static/js/496.9e0e2e61.chunk.js": "/TTC-Next/static/js/496.9e0e2e61.chunk.js",
     "service-worker.js": "/TTC-Next/service-worker.js",
     "index.html": "/TTC-Next/index.html",
     "main.eac3d18e.css.map": "/TTC-Next/static/css/main.eac3d18e.css.map",
-    "main.8c43e5e7.js.map": "/TTC-Next/static/js/main.8c43e5e7.js.map",
+    "main.1698b050.js.map": "/TTC-Next/static/js/main.1698b050.js.map",
     "496.9e0e2e61.chunk.js.map": "/TTC-Next/static/js/496.9e0e2e61.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.eac3d18e.css",
-    "static/js/main.8c43e5e7.js"
+    "static/js/main.1698b050.js"
   ]
 }
