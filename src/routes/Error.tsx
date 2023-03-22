@@ -3,7 +3,7 @@ import { t } from "i18next";
 
 export default function Error() {
   return (
-    <div>
+    <div className="errorContainer">
       <Text>{t("error.notFound")}</Text>
     </div>
   );
